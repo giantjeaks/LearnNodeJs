@@ -1,5 +1,6 @@
 //18. Adding a note
 const fs = require('fs')
+const chalk = require('chalk')
 
 const getNotes = function(){
     return 'Your Notes...'
@@ -16,9 +17,9 @@ const addNote = function(title,body){
             })
 
             saveNotes(notes)
-            console.log('New note added')
+            console.log(chalk.green.inverse('New note added'))
         } else {
-            console.log('Note title taken!')
+            console.log(chalk.red.invers('Note title taken!'))
         }
 }
 
@@ -28,7 +29,14 @@ const removeNote = function (title) {
         return note.title !== title
     })
 
-    saveNotes(notesToKeep)
+    if(notesToKeep.length !== notes.length){
+        console.log(chalk.green.inverse('Note removed!'))
+        saveNotes(notesToKeep)
+    }else{
+        console.log(chalk.red.inverse('No note found!'))
+    }
+
+    
 }
 
 const saveNotes = function (notes) {
