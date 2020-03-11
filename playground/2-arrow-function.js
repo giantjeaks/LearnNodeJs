@@ -12,8 +12,13 @@
 
 const event = {
     name: 'Birthday Party',
-    printGuestList: function () {
-        console.log('Guest list for ' + this.name)
+    guestList: ['Andrew','John','Mike'],
+    printGuestList(){
+        const that = this
+        console.log('Guest list for ' + that.name)
+        this.guestList.forEach( (guest) => {
+            console.log(guest + 'is attending ' + that.name);
+        })
     }
 }
 
